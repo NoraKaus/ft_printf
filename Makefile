@@ -1,12 +1,12 @@
 NAME = libftprintf.a
 
-SRC = ${wildcard *.c} ${wildcard *.h}
+SRC = ${wildcard ft_*.c}
 
 OBJ = ${SRC:.c=.o}
 
 CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
+all : $(NAME)
 
 $(NAME) : $(OBJ)
 	ar rcs $(NAME) $(OBJ)
@@ -22,4 +22,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY all clean fclean re
+.PHONY : all clean fclean re

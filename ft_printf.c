@@ -1,27 +1,63 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:57:58 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/15 17:08:38 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/16 17:39:57 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_print.h"
+#include "ft_printf.h"
 
-int	ft_printf(const char *, ...)
+int	ft_printf(const char *input, ...)
 {
-	size_t	num;
-	va_list	args;
+	va_list	list;
+	size_t	ttl_print;
 
-	//need to calculate num of args in the list
-	va_start(args, num);
-	//write with conversion
-	va_end(args);
+	va_start(list, input);
+	ttl_print = display(input, list);
+	va_end(list);
+	return (ttl_print);
 }
+
+size_t	display(const char *input, va_list list)
+{
+	size_t			i;
+	size_t			*total;
+
+	i = 0;
+	*total = 0;
+	while (input[i])
+	{
+		if (input[i] != '%')
+			*total += ft_putchar(input[i]);
+		else
+			check_input(input, i + 1, list, total);
+		i++;
+	}
+	return (*total);
+}
+
+size_t	check_next(const char *input, size_t i, va_list list, size_t *total)
+{
+	if (input[i] == 'i' || input[i + 1] == 'd')
+		*total += ft_itoa(va_arg(list, unsigned long));
+	else if (input[i] == 'c')
+		*total += ft_putchar(va_arg(list, unsigned long));
+	else if (input[i] == 's')
+		*total += ft_putstr(va_arg(list, char *));
+}
+
+// int main(void)
+// {
+// 	int n = 123;
+// 	int c = 'r';
+
+// 	ft_printf("Hello %i %c", n, c);
+// }
 
 // %c Prints a single character.
 // %s Prints a string (as defined by the common C convention).
