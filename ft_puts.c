@@ -10,8 +10,7 @@ size_t	ft_putstr(char *str)
 {
 	size_t len;
 
-	while (str[len])
-		len++;
+	len = ft_strlen(str);
 	write(1, str, len);
 	return (len);
 }

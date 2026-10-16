@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:57:58 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/16 17:39:57 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/16 17:57:32 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_printf(const char *input, ...)
 size_t	display(const char *input, va_list list)
 {
 	size_t			i;
-	size_t			*total;
+	size_t			total[64];
 
 	i = 0;
 	*total = 0;
@@ -35,7 +35,7 @@ size_t	display(const char *input, va_list list)
 		if (input[i] != '%')
 			*total += ft_putchar(input[i]);
 		else
-			check_input(input, i + 1, list, total);
+			i = check_next(input, i + 1, list, total);
 		i++;
 	}
 	return (*total);
@@ -49,6 +49,7 @@ size_t	check_next(const char *input, size_t i, va_list list, size_t *total)
 		*total += ft_putchar(va_arg(list, unsigned long));
 	else if (input[i] == 's')
 		*total += ft_putstr(va_arg(list, char *));
+	return (i);
 }
 
 // int main(void)

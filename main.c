@@ -2,8 +2,5 @@
 
 int main(void)
 {
-	int n = 123;
-	int c = 'r';
-
-	ft_printf("Hello %i %c", n, c);
+	ft_printf("Hello %i %c, %s", 123, 'x', "Seven");
 }
