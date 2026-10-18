@@ -10,6 +10,11 @@ size_t	ft_putstr(char *str)
 {
 	size_t len;
 
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	len = ft_strlen(str);
 	write(1, str, len);
 	return (len);

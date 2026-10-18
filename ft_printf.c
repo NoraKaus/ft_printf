@@ -26,10 +26,9 @@ int	ft_printf(const char *input, ...)
 size_t	display(const char *input, va_list list)
 {
 	size_t			i;
-	size_t			total[64];
+	size_t			*total;
 
 	i = 0;
-	*total = 0;
 	while (input[i])
 	{
 		if (input[i] != '%')
