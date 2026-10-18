@@ -12,62 +12,64 @@
 
 #include "ft_printf.h"
 
-static unsigned long	int_len(long n, long base_len);
-static unsigned long	print_neg(long *nb, char *num);
+// static unsigned long	int_len(long n, long base_len);
+// static unsigned long	print_neg(long *nb, char *num);
 
 ssize_t	ft_ntopr(unsigned long nb, char *base)
 {
 	unsigned long		base_len;
 	unsigned long		len;
 	unsigned long		pos;
-	unsigned long		i;
-	char				num[24];
+	char				num[BUFF_SZ];
 
+	pos = BUFF_SZ;
 	base_len = ft_strlen(base);
-	len = int_len(nb, base_len);
 	if (nb == 0)
-		num[len] = '0';
-	pos = len;
-	while (i < len)
 	{
-		len--;
-		num[len] = base[nb % base_len];
+		pos -= 1;
+		num[pos] = '0';
+	}
+	while (nb > 0)
+	{
+		pos--;
+		num[pos] = base[nb % base_len];
 		nb /= base_len;
 	}
-	write(1, num, pos);
-	return (pos);
-}
-
-static unsigned long	print_neg(long *nb, char *num)
-{
-	if (*nb < 0)
-	{
-		num[0] = '-';
-		*nb *= -1;
-		return (1);
-	}
-	return (0);
-}
-
-static	unsigned long	int_len(long n, long base_len)
-{
-	unsigned long	len;
-
-	len = 0;
-	if (n == 0)
-		len++;
-	if (n < 0)
-	{
-		len++;
-		n *= -1;
-	}
-	while (n > 0)
-	{
-		n /= base_len;
-		len++;
-	}
+	len = BUFF_SZ - pos;
+	write(1, &num[pos], len);
 	return (len);
 }
+
+// static unsigned long	print_neg(long *nb, char *num)
+// {
+// 	if (*nb < 0)
+// 	{
+// 		num[0] = '-';
+// 		*nb *= -1;
+// 		return (1);
+// 	}
+// 	return (0);
+// }
+
+// static	unsigned long	int_len(long n, long base_len)
+// {
+// 	unsigned long	len;
+
+// 	len = 0;
+// 	if (n == 0)
+// 		len++;
+// 	if (n < 0)
+// 	{
+// 		len++;
+// 		n *= -1;
+// 	}
+// 	while (n > 0)
+// 	{
+// 		n /= base_len;
+// 		len++;
+// 	}
+// 	return (len);
+// }
 
 // int	main(void)
 // {

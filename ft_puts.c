@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 15:43:57 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/18 16:21:23 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/18 19:09:01 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ ssize_t	ft_strlen(const char *s)
 		len++;
 	return (len);
 }
-

@@ -6,13 +6,14 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:57:58 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/18 18:19:37 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/18 19:08:05 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static ssize_t	handle_pointers(va_list *list);
+static ssize_t	handle_negatives(va_list *list);
 
 int	ft_printf(const char *input, ...)
 {
@@ -61,7 +62,7 @@ ssize_t	check_next(const char *input, size_t i, va_list *list)
 
 	no_err = 0;
 	if (input[i] == 'i' || input[i] == 'd' )
-		no_err = ft_ntopr((long)va_arg(*list, int), BASE_TEN);
+		no_err = handle_negatives(list);
 	else if (input[i] == 'u')
 		no_err = ft_ntopr((unsigned long)va_arg(*list, unsigned int), BASE_TEN);
 	else if (input[i] == 'c')
@@ -95,6 +96,27 @@ static ssize_t	handle_pointers(va_list *list)
 	return (chk1 + chk2);
 }
 
+static ssize_t	handle_negatives(va_list *list)
+{
+	long			nbr;
+	ssize_t			ch1;
+	ssize_t			ch2;
+
+	ch1 = 0;
+	nbr = (long)va_arg(*list, int);
+	if (nbr < 0)
+	{
+		ch1 = write (1, "-", 1);
+		if (ch1 < 0)
+			return (-1);
+		nbr *= -1;
+	}
+	ch2 = ft_ntopr((unsigned long)nbr, BASE_TEN);
+	if (ch2 < 0)
+		return (-1);
+	return (ch1 + ch2);
+}
+
 // int main(void)
 // {
 // 	int n = 123;
@@ -111,5 +133,3 @@ static ssize_t	handle_pointers(va_list *list)
 // %i Prints an integer in base 10.
 // %p The void * pointer argument has to be printed in hexadecimal format.
 // %% Prints a percent sig
-
-

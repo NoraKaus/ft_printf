@@ -1,14 +1,26 @@
-#include "ft_printf.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/18 19:08:53 by ekausiny          #+#    #+#             */
+/*   Updated: 2026/10/18 19:08:54 by ekausiny         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main(void)
-{
-	int test = -1;
-	int tst = 15;
-	char *ts = "hjk";
-	char *t = NULL;
+// #include "ft_printf.h"
+// #include <stdio.h>
 
-	ft_printf("%p %p, %p, %p", &test, &tst, ts, t);
-	write (1, "\n", 1);
-	printf("%p %p, %p, %p", &test, &tst, ts, t);
-}
+// int main(void)
+// {
+// 	int test = 0;
+// 	int tst = 15;
+// 	char *ts = "hjk";
+// 	char *t = NULL;
+
+// 	ft_printf("%i %d, %p, %p", test, tst, ts, t);
+// 	write (1, "\n", 1);
+// 	printf("%i %d, %p, %p", test, tst, ts, t);
+// }
