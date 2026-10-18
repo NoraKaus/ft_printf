@@ -27,7 +27,7 @@ ssize_t	ft_ntopr(unsigned long nb, char *base)
 	if (nb == 0)
 	{
 		pos -= 1;
-		num[pos] = '0';
+		num[pos] = base[0];
 	}
 	while (nb > 0)
 	{
@@ -36,7 +36,8 @@ ssize_t	ft_ntopr(unsigned long nb, char *base)
 		nb /= base_len;
 	}
 	len = BUFF_SZ - pos;
-	write(1, &num[pos], len);
+	if (write(1, &num[pos], len) < 0)
+		return (-1);
 	return (len);
 }
 

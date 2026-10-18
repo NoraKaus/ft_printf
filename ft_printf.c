@@ -22,9 +22,9 @@ int	ft_printf(const char *input, ...)
 
 	va_start(list, input);
 	ttl_print = display(input, &list);
+	va_end(list);
 	if (ttl_print < 0)
 		return (-1);
-	va_end(list);
 	return (ttl_print);
 }
 
@@ -32,7 +32,7 @@ ssize_t	display(const char *input, va_list *list)
 {
 	ssize_t			i;
 	ssize_t			total;
-	int				output;
+	ssize_t			output;
 
 	i = 0;
 	output = 0;
@@ -86,12 +86,14 @@ static ssize_t	handle_pointers(va_list *list)
 	ssize_t			chk1;
 	ssize_t			chk2;
 
-	ptr = va_arg(*list, unsigned long);
+	ptr = (unsigned long)va_arg(*list, unsigned long);
 	if (!ptr)
 		return (write(1, "(nil)", 5));
 	chk1 = write (1, "0x", 2);
+	if (chk1 < 0)
+		return (-1);
 	chk2 = ft_ntopr(ptr, HX_LOW);
-	if ((chk1 < 0) || (chk2 < 0))
+	if (chk2 < 0)
 		return (-1);
 	return (chk1 + chk2);
 }

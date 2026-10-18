@@ -1,6 +1,8 @@
 NAME = libftprintf.a
 
-SRC = ${wildcard ft_*.c}
+SRC = ft_ntopr.c \
+	ft_printf.c \
+	ft_puts.c
 
 OBJ = ${SRC:.c=.o}
 
@@ -12,7 +14,7 @@ $(NAME) : $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 
 %.o : %.c 
-	cc ${CFLAGS} -c $< -o $@ 
+	cc ${CFLAGS} -I. -c $< -o $@ 
 
 clean:
 	rm -f $(OBJ)

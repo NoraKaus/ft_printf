@@ -14,7 +14,8 @@
 
 ssize_t	ft_putchar(int c)
 {
-	write(1, &c, 1);
+	if (write(1, &c, 1) < 0)
+		return (-1);
 	return (1);
 }
 
@@ -22,10 +23,16 @@ ssize_t	ft_putstr(char *str)
 {
 	size_t	len;
 
+
 	if (!str)
-		return (write(1, "(null)", 6));
+	{
+		if (write(1, "(null)", 6) < 0)
+			return (-1);
+		return (6);
+	}
 	len = ft_strlen(str);
-	write(1, str, len);
+	if (write(1, str, len) < 0)
+		return (-1);
 	return (len);
 }
 
