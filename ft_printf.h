@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:57:49 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/16 17:54:00 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/18 18:16:52 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 # include <stdlib.h>
 # include <stdarg.h>
 
+# define BASE_TEN "0123456789"
+# define HX_LOW "0123456789abcdef"
+# define HX_UP "0123456789ABCDEF"
+
+
 int		ft_printf(const char *input, ...);
-size_t	ft_putchar(int c);
-size_t	ft_putstr(char *str);
-size_t	ft_itoa(int n);
-size_t	ft_strlen(const char *s);
-size_t	display(const char *input, va_list list);
-size_t	check_next(const char *input, size_t i, va_list list, size_t *total);
-
-
+ssize_t	display(const char *input, va_list *list);
+ssize_t	check_next(const char *input, size_t i, va_list *list);
+ssize_t	ft_putchar(int c);
+ssize_t	ft_putstr(char *str);
+ssize_t	ft_strlen(const char *s);
+ssize_t	ft_ntopr(unsigned long nb, char *base);
 
 #endif

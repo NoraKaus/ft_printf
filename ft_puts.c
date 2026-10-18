@@ -1,26 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/18 15:43:57 by ekausiny          #+#    #+#             */
+/*   Updated: 2026/10/18 16:21:23 by ekausiny         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-size_t	ft_putchar(int c)
+ssize_t	ft_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-size_t	ft_putstr(char *str)
+ssize_t	ft_putstr(char *str)
 {
-	size_t len;
+	size_t	len;
 
 	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
+		return (write(1, "(null)", 6));
 	len = ft_strlen(str);
 	write(1, str, len);
 	return (len);
 }
 
-size_t	ft_strlen(const char *s)
+ssize_t	ft_strlen(const char *s)
 {
 	size_t	len;
 
