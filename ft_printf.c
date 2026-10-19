@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:57:58 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/18 19:08:05 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/19 18:11:52 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ ssize_t	display(const char *input, va_list *list)
 		{
 			if (input[i + 1] == '\0')
 				return (total);
+			check_flags(input, i + 1, list);
 			output = check_next(input, i + 1, list);
 			i++;
 		}
@@ -54,6 +55,34 @@ ssize_t	display(const char *input, va_list *list)
 		i++;
 	}
 	return (total);
+}
+
+ssize_t	check_flags(const char *input, ssize_t i, va_list *list)
+{
+	t_flags	*flags;
+	ssize_t	count;
+
+	flags = malloc(sizeof(t_flags));
+	if (!flags)
+		return (-1);
+	count = 0;
+	init_zero(flags);
+	
+
+
+}
+
+void	init_zero(t_flags *flags)
+{
+	flags->minus = 0;
+	flags->zero = 0;
+	flags->plus = 0;
+	flags->space = 0;
+	flags->hash = 0;
+	flags->width = 0;
+	flags->width_len = 0;
+	flags->precision = 0;
+	flags->precision_len = 0;
 }
 
 ssize_t	check_next(const char *input, size_t i, va_list *list)

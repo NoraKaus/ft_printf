@@ -12,9 +12,6 @@
 
 #include "ft_printf.h"
 
-// static unsigned long	int_len(long n, long base_len);
-// static unsigned long	print_neg(long *nb, char *num);
-
 ssize_t	ft_ntopr(unsigned long nb, char *base)
 {
 	unsigned long		base_len;
@@ -40,37 +37,6 @@ ssize_t	ft_ntopr(unsigned long nb, char *base)
 		return (-1);
 	return (len);
 }
-
-// static unsigned long	print_neg(long *nb, char *num)
-// {
-// 	if (*nb < 0)
-// 	{
-// 		num[0] = '-';
-// 		*nb *= -1;
-// 		return (1);
-// 	}
-// 	return (0);
-// }
-
-// static	unsigned long	int_len(long n, long base_len)
-// {
-// 	unsigned long	len;
-
-// 	len = 0;
-// 	if (n == 0)
-// 		len++;
-// 	if (n < 0)
-// 	{
-// 		len++;
-// 		n *= -1;
-// 	}
-// 	while (n > 0)
-// 	{
-// 		n /= base_len;
-// 		len++;
-// 	}
-// 	return (len);
-// }
 
 // int	main(void)
 // {
