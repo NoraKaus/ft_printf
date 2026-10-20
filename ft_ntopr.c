@@ -12,7 +12,10 @@
 
 #include "ft_printf.h"
 
-ssize_t	ft_ntopr(unsigned long nb, char *base)
+void	ft_out_fl(t_flags *flags, unsigned long len, unsigned long pos,\
+	char inp);
+
+ssize_t	ft_ntopr(unsigned long nb, char *base, t_flags *flags, char inp)
 {
 	unsigned long		base_len;
 	unsigned long		len;
@@ -33,9 +36,18 @@ ssize_t	ft_ntopr(unsigned long nb, char *base)
 		nb /= base_len;
 	}
 	len = BUFF_SZ - pos;
+	ft_pr_flags(flags, len, pos, inp);
+	free (flags);
 	if (write(1, &num[pos], len) < 0)
 		return (-1);
 	return (len);
+}
+
+void	ft_out_fl(t_flags *flags, unsigned long len, unsigned long pos,\
+	char inp)
+{
+	if (inp == 'x' && flags->hash)
+	
 }
 
 // int	main(void)

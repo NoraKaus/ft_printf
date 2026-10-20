@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 19:08:53 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/19 16:13:25 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/20 12:53:09 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int main(void)
 	// printf("FT: %d | STD: %d\n\n", ft_ret, std_ret);
 
     printf("Flags\n");
-	printf("prec: %.3d  \n %.i\n", d, num);
+	printf("prec: %.0d  \n %.i\n", d, num);
 	printf("hash %.0d\n", num);
 	printf("hash %#X\n", n);
 	printf("space %-.10d\n", num);
