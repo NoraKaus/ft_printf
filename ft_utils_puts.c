@@ -45,3 +45,17 @@ ssize_t	ft_strlen(const char *s)
 		len++;
 	return (len);
 }
+
+ssize_t put_loop(ssize_t len, char s)
+{
+	ssize_t err;
+
+	err = -1;
+	while (0 < len)
+	{
+		err = write(1, &s, 1);
+		if (err < 0)
+			return (-1);
+		len--;
+	}
+}

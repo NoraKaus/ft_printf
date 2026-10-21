@@ -23,7 +23,7 @@ int main(void)
 	int	d = 5;
 	int	n = -42;
 	unsigned int u = 123;
-	// char str[] = "super";
+	char str[] = "super";
 	
 
 	// printf("Strings\n");
@@ -58,9 +58,9 @@ int main(void)
 	// printf("FT: %d | STD: %d\n\n", ft_ret, std_ret);
 
     printf("Flags\n");
-	printf("prec: %.0d  \n %.i\n", d, num);
-	printf("hash %.0d\n", num);
-	printf("hash %#X\n", n);
+	printf("prec: %#p \n %p\n", str, str);
+	printf("hash %p\n", n);
+	printf("hash %.0p\n", num);
 	printf("space %-.10d\n", num);
 	printf("space %.10d\n", num);
 	printf("space % d\n", n);

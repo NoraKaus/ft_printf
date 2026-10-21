@@ -12,37 +12,25 @@
 
 #include "ft_printf.h"
 
-static ssize_t	handle_pointers(va_list *list, char inp);
-static ssize_t	handle_negatives(va_list *list);
-
-ssize_t	ft_chck_nxt(const char *input, size_t i, va_list *list, t_flags *flags)
+ssize_t	ft_chck_nxt(va_list *list, t_flags *flags)
 {
-	ssize_t	no_err;
+	ssize_t				no_err;
 
 	no_err = 0;
-	if (input[i] == 'i' || input[i] == 'd' )
-		no_err = handle_negatives(list);
-	else if (input[i] == 'u')
-		no_err = ft_ntopr((unsigned long)va_arg(*list, unsigned int), BASE_TEN,\
-		flags, input[i]);
-	else if (input[i] == 'c')
-		no_err = ft_putchar(va_arg(*list, int));
-	else if (input[i] == 's')
-		no_err = ft_putstr(va_arg(*list, char *));
-	else if (input[i] == 'x')
-		no_err = ft_ntopr((unsigned long)va_arg(*list, unsigned int), HX_LOW,\
-		flags, input[i]);
-	else if (input[i] == 'X')
-		no_err = ft_ntopr((unsigned long)va_arg(*list, unsigned int), HX_UP,\
-		flags, input[i]);
-	else if (input[i] == 'p')
-		no_err = handle_pointers(list, input[i]);
-	else if (input[i] == '%')
-		no_err = write(1, &input[i], 1);
+	if (flags->type == 0)
+		return (-1);
+	if (flags->type == 'i' || flags->type == 'd' )
+		no_err = handle_digits(list, flags);
+	else if (flags->type == 'u' || flags->type == 'x' || flags->type == 'X')
+		no_err = handle_ul(list, flags);
+	else if (flags->type == 'c' || flags->type == 's' || flags->type == '%')
+		no_err = handle_text(list, flags);
+	else if (flags->type == 'p')
+		no_err = handle_pointers(list, &flags);
 	return (no_err);
 }
 
-static ssize_t	handle_pointers(va_list *list, char inp)
+static ssize_t	handle_pointers(va_list *list, t_flags *flags)
 {
 	unsigned long	ptr;
 	ssize_t			chk1;
@@ -54,29 +42,54 @@ static ssize_t	handle_pointers(va_list *list, char inp)
 	chk1 = write (1, "0x", 2);
 	if (chk1 < 0)
 		return (-1);
-	chk2 = ft_ntopr(ptr, HX_LOW, inp);
+	chk2 = ft_ntopr(ptr, HX_LOW);
 	if (chk2 < 0)
 		return (-1);
 	return (chk1 + chk2);
 }
 
-static ssize_t	handle_negatives(va_list *list)
+static ssize_t	handle_digits(va_list *list, t_flags *flags)
 {
 	long			nbr;
-	ssize_t			ch1;
-	ssize_t			ch2;
+	ssize_t			len;
+	char			prefix;
+	char			num[BUFF_SZ];
 
-	ch1 = 0;
+	prefix = 0;
 	nbr = (long)va_arg(*list, int);
 	if (nbr < 0)
 	{
-		ch1 = write (1, "-", 1);
-		if (ch1 < 0)
-			return (-1);
+		flags->negative = 1;
 		nbr *= -1;
 	}
-	ch2 = ft_ntopr((unsigned long)nbr, BASE_TEN);
-	if (ch2 < 0)
+	prefix = get_prefix(flags);
+	len = ft_ntopr((unsigned long)nbr, BASE_TEN, num);
+	if (len < 0)
 		return (-1);
-	return (ch1 + ch2);
+	print_num(num, len, flags, prefix);
+
+}
+
+void	print_num(char *num, ssize_t len, t_flags *flags, char prefix)
+{
+	ssize_t	pos;
+	ssize_t zero_pr;
+	ssize_t space_pr;
+
+	pos = BUFF_SZ - len;
+	
+}
+
+char	get_prefix(t_flags *flags)
+{
+	if (flags->negative)
+		return ('-');
+	else if (flags->plus)
+		return ('+');
+	else if (flags->space)
+		return (' ');
+	else if (flags->hash && flags->type == 'X')
+		return ('0X');
+	else if (flags->hash && flags->type == 'x')
+		return ('0x');
 }

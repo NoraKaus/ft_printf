@@ -12,9 +12,6 @@
 
 #include "ft_printf.h"
 
-ssize_t	ft_add_flags(const char *input, ssize_t *i, va_list *list);
-void	init_struct(t_flags *flags);
-void	ft_parsef(const char *input, ssize_t *i, va_list *list, t_flags *flags);
 
 int	ft_printf(const char *input, ...)
 {
@@ -46,12 +43,7 @@ ssize_t	display(const char *input, va_list *list)
 		{
 			if (input[i + 1] == '\0')
 				return (total);
-			if (is_flag(input, i))
-			{
-				if (ft_add_flags(input, i, list) != 1)
-					return (-1);
-			}
-			output = ft_chck_nxt(input, i + 1, list, flags);
+			output = handle_output(input, i + 1, list);
 			i++;
 		}
 		if (output < 0)
@@ -61,20 +53,19 @@ ssize_t	display(const char *input, va_list *list)
 	return (total);
 }
 
+ssize_t handle_output(const char *input, ssize_t *i, va_list *list)
+{
+	t_flags flags;
+	ssize_t count;
+	
+	count = 0;
+	init_struct(&flags);
+	t_parsef(input, i, &flags);
+	count = ft_chck_nxt(list, &flags);
+	if (count < 0)
+		return (-1);
+	return (count);
+}
 
-// int main(void)
-// {
-// 	int n = 123;
-// 	int c = 'r';
 
-// 	ft_printf("Hello %i %c", n, c);
-// }
 
-// %c Prints a single character.
-// %s Prints a string (as defined by the common C convention).
-// %i Prints an integer in base 10.
-// %u Prints an unsigned decimal (base 10) number.
-// %d Prints a decimal (base 10) number.
-// %i Prints an integer in base 10.
-// %p The void * pointer argument has to be printed in hexadecimal format.
-// %% Prints a percent sig

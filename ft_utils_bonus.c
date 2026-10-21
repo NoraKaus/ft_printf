@@ -19,21 +19,29 @@ int	ft_isalpha(int c)
 	return (0);
 }
 
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
+
 void	init_struct(t_flags *flags)
 {
+	flags->type = 0;
 	flags->negative = 0;
 	flags->minus = 0;
 	flags->plus = 0;
+	flags->zero = 0;
 	flags->space = 0;
 	flags->hash = 0;
 	flags->width = 0;
-	flags->width_len = 0;
 	flags->precision = -1;
 }
 
-ssize_t	is_flag(const char *input, ssize_t *i)
+ssize_t	is_flag(char inp)
 {
-	char	symb[7];
+	char	symb[6];
 	ssize_t	j;
 
 	j = 0;
@@ -41,12 +49,36 @@ ssize_t	is_flag(const char *input, ssize_t *i)
 	symb[1] = '+';
 	symb[2] = '0';
 	symb[3] = ' ';
-	symb[4] = '.';
-	symb[5] = '#';
-	symb[6] = '\0';
+	symb[4] = '#';
+	symb[5] = '\0';
 	while (symb[j])
 	{
-		if (input[*i] == symb[j])
+		if (inp == symb[j])
+			return (1);
+		j++;
+	}
+	return (0);
+}
+
+ssize_t	is_type(char inp)
+{
+	char	type[9];
+	ssize_t	j;
+
+	j = 0;
+	type[0] = 'i';
+	type[1] = 'd';
+	type[2] = 'c';
+	type[3] = 's';
+	type[4] = 'x';
+	type[5] = 'X';
+	type[6] = 'p';
+	type[7] = 'u';
+	type[8] = '%';
+	type[9] = '\0';
+	while (type[j])
+	{
+		if (inp == type[j])
 			return (1);
 		j++;
 	}
