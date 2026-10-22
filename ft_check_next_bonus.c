@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_next.c                                    :+:      :+:    :+:   */
+/*   ft_check_next_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 12:35:56 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/22 16:19:24 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 17:23:51 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static ssize_t	handle_ul(va_list *list, t_flags *flags)
 {
 	unsigned long	nbr;
 	ssize_t			len;
-	char 			*prefix;
+	char 			*prefix = NULL;
 	char			num[BUFF_SZ];
 
 	nbr = (unsigned long)va_arg(*list, unsigned int);
@@ -87,7 +87,16 @@ static ssize_t	handle_ul(va_list *list, t_flags *flags)
 
 static ssize_t	handle_text(va_list *list, t_flags *flags)
 {
+	ssize_t prec;
+	ssize_t total;
+	
 
+	prec = get_precision(flags);
+	if (flags->type == 's' && prec > 0)
+	{
+		
+	}
+	
 
 }
 
@@ -98,8 +107,32 @@ void	output_num(char *num, ssize_t len, t_flags *flags, char prefix)
 	ssize_t space_pr;
 
 	pos = BUFF_SZ - len;
-	
 }
+
+ssize_t	get_width(flags)
+{
+	ssize_t	width;
+
+	if (flags->width)
+	{
+		width = flags->width;
+		return (width);
+	}
+	return (0);
+}
+
+ssize_t	get_precision(flags)
+{
+	ssize_t	prec;
+
+	if (flags->precision)
+	{
+		prec = flags->precison;
+		return (prec);
+	}
+	return (0);
+}
+
 
 char	*get_prefix(t_flags *flags)
 {

@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 15:43:57 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/22 16:28:18 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 17:24:25 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ssize_t	ft_putchar(int c)
 	return (1);
 }
 
-ssize_t	ft_putstr(char *str)
+ssize_t	ft_putstr(char *str, int len)
 {
 	size_t	len;
 

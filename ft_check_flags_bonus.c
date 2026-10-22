@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_flags.c                                   :+:      :+:    :+:   */
+/*   ft_check_flags_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 13:08:20 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/22 16:06:42 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 16:51:21 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void t_parsef(const char *input, ssize_t *i, t_flags *flags)
 		if (input[*i] == '#')
 			flags->hash = 1;
 		if (input[*i] == '0')
-			flags->zero= 1;
+			flags->zero = 1;
 		(*i)++;
 	}
 	if (ft_isdigit(input[*i]))

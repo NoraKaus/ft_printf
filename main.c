@@ -6,11 +6,11 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 19:08:53 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/22 13:44:26 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 16:49:24 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 #include <stdio.h>
 #include <limits.h> 
 
@@ -54,7 +54,7 @@ int main(void)
 
 	// printf("Percentages\n");
 	// ft_ret = ft_printf("FT : %%\n");
-	// std_ret = printf("STD: %%\n");
+	// std_ret = printf("STD: %%\n");Precision	
 	// printf("FT: %d | STD: %d\n\n", ft_ret, std_ret);
 
     printf("Flags\n");
@@ -63,9 +63,9 @@ int main(void)
 	printf("3:%#-.10x\n", u);
 	printf("4:%#.10x\n", u);
 	printf("5:%#0.0x\n", u);
-	printf("6:%010x\n", u);
-	printf("7:%05x\n", u);
-	printf("8:%#0.5x\n", u);
-	printf("9:%10.5x\n", u);
+	printf("6:%-010d\n", num);
+	printf("7:%10x\n", u);
+	printf("8:%010x\n", u);
+	printf("9:%010.5x\n", u);
 	return (0);
 }
