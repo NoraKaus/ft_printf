@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 12:35:56 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/20 15:53:14 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 16:19:24 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,46 @@ static ssize_t	handle_digits(va_list *list, t_flags *flags)
 {
 	long			nbr;
 	ssize_t			len;
-	char			prefix;
+	char			*prefix;
 	char			num[BUFF_SZ];
+	ssize_t			chk;
 
-	prefix = 0;
 	nbr = (long)va_arg(*list, int);
 	if (nbr < 0)
 	{
 		flags->negative = 1;
 		nbr *= -1;
 	}
-	prefix = get_prefix(flags);
+	*prefix = get_prefix(flags);
 	len = ft_ntopr((unsigned long)nbr, BASE_TEN, num);
 	if (len < 0)
 		return (-1);
-	print_num(num, len, flags, prefix);
+	output_num(num, len, flags, prefix);
 
 }
 
-void	print_num(char *num, ssize_t len, t_flags *flags, char prefix)
+static ssize_t	handle_ul(va_list *list, t_flags *flags)
+{
+	unsigned long	nbr;
+	ssize_t			len;
+	char 			*prefix;
+	char			num[BUFF_SZ];
+
+	nbr = (unsigned long)va_arg(*list, unsigned int);
+
+	if (flags->type == 'x')
+		*prefix = get_prefix(flags);
+
+
+}
+
+static ssize_t	handle_text(va_list *list, t_flags *flags)
+{
+
+
+}
+
+void	output_num(char *num, ssize_t len, t_flags *flags, char prefix)
 {
 	ssize_t	pos;
 	ssize_t zero_pr;
@@ -80,16 +101,16 @@ void	print_num(char *num, ssize_t len, t_flags *flags, char prefix)
 	
 }
 
-char	get_prefix(t_flags *flags)
+char	*get_prefix(t_flags *flags)
 {
 	if (flags->negative)
-		return ('-');
+		return ("-");
 	else if (flags->plus)
-		return ('+');
+		return ("+");
 	else if (flags->space)
-		return (' ');
+		return (" ");
 	else if (flags->hash && flags->type == 'X')
-		return ('0X');
+		return ("0X");
 	else if (flags->hash && flags->type == 'x')
-		return ('0x');
+		return ("0x");
 }

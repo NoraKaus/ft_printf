@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 19:08:53 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/20 12:53:09 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 13:44:26 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,14 @@ int main(void)
 	// printf("FT: %d | STD: %d\n\n", ft_ret, std_ret);
 
     printf("Flags\n");
-	printf("prec: %#p \n %p\n", str, str);
-	printf("hash %p\n", n);
-	printf("hash %.0p\n", num);
-	printf("space %-.10d\n", num);
-	printf("space %.10d\n", num);
-	printf("space % d\n", n);
-	printf("zero %-.5i\n", n);
-	printf("zero %+010d\n", num);
-	printf(" %05u\n", u);
-	printf("plus %0.5i\n", n);
-	printf(" %.10u\n", u);
-	printf(" %010.5d\n", n);
+	printf("1:%#x\n%#X\n", u, u);
+	printf("2:%.0x\n", u);
+	printf("3:%#-.10x\n", u);
+	printf("4:%#.10x\n", u);
+	printf("5:%#0.0x\n", u);
+	printf("6:%010x\n", u);
+	printf("7:%05x\n", u);
+	printf("8:%#0.5x\n", u);
+	printf("9:%10.5x\n", u);
 	return (0);
 }

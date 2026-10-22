@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 13:08:20 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/20 15:30:01 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 16:06:42 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void t_parsef(const char *input, ssize_t *i, t_flags *flags)
 	{
 		flags->precision = 0;
 		(*i)++;
-	}	
+	}
 	if (ft_isdigit(input[*i]))
 		flags->precision = ft_parse_n(input, i);
 	if (is_type(input[*i]))
@@ -73,7 +73,7 @@ ssize_t	ft_parse_n(const char *input, ssize_t *i)
 // 		"%08.5r"};
 // 	t_flags flags;
 // 	ssize_t i;
-	
+
 // 	for (int j = 0; j < sizeof(arr)/sizeof(arr[i]); j++)
 // 	{
 // 		i = 1;

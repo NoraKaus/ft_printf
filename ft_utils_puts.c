@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puts.c                                          :+:      :+:    :+:   */
+/*   ft_utils_puts.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 15:43:57 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/18 19:09:01 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/22 16:28:18 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,4 @@ ssize_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
-}
-
-ssize_t put_loop(ssize_t len, char s)
-{
-	ssize_t err;
-
-	err = -1;
-	while (0 < len)
-	{
-		err = write(1, &s, 1);
-		if (err < 0)
-			return (-1);
-		len--;
-	}
 }
