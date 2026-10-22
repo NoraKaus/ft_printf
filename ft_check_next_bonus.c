@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 ssize_t	ft_chck_nxt(va_list *list, t_flags *flags)
 {
@@ -52,7 +52,6 @@ static ssize_t	handle_digits(va_list *list, t_flags *flags)
 {
 	long			nbr;
 	ssize_t			len;
-	char			*prefix;
 	char			num[BUFF_SZ];
 	ssize_t			chk;
 
@@ -62,11 +61,10 @@ static ssize_t	handle_digits(va_list *list, t_flags *flags)
 		flags->negative = 1;
 		nbr *= -1;
 	}
-	*prefix = get_prefix(flags);
 	len = ft_ntopr((unsigned long)nbr, BASE_TEN, num);
 	if (len < 0)
 		return (-1);
-	output_num(num, len, flags, prefix);
+	output_num(num, len, flags);
 
 }
 
@@ -80,7 +78,7 @@ static ssize_t	handle_ul(va_list *list, t_flags *flags)
 	nbr = (unsigned long)va_arg(*list, unsigned int);
 
 	if (flags->type == 'x')
-		*prefix = get_prefix(flags);
+		prefix = get_prefix(flags);
 
 
 }
@@ -89,7 +87,6 @@ static ssize_t	handle_text(va_list *list, t_flags *flags)
 {
 	ssize_t prec;
 	ssize_t total;
-	
 
 	prec = get_precision(flags);
 	if (flags->type == 's' && prec > 0)
@@ -100,16 +97,25 @@ static ssize_t	handle_text(va_list *list, t_flags *flags)
 
 }
 
-void	output_num(char *num, ssize_t len, t_flags *flags, char prefix)
+void	output_num(char *num, ssize_t len, t_flags *flags)
 {
 	ssize_t	pos;
 	ssize_t zero_pr;
+	ssize_t all_no_padding;
 	ssize_t space_pr;
+	char 	*prefix;
 
+	prefix = get_prefix(flags);
 	pos = BUFF_SZ - len;
+	zero_pr = get_precision(flags) - len;
+	if (zero_pr < 0)
+		zero_pr = 0;
+	all_no_padding = len + zero_pr + ft_strlen(prefix);
+	space_pr = get_width(flags) - all_no_padding;
+
 }
 
-ssize_t	get_width(flags)
+ssize_t	get_width(t_flags *flags)
 {
 	ssize_t	width;
 
@@ -121,18 +127,17 @@ ssize_t	get_width(flags)
 	return (0);
 }
 
-ssize_t	get_precision(flags)
+ssize_t	get_precision(t_flags *flags)
 {
 	ssize_t	prec;
 
 	if (flags->precision)
-	{
-		prec = flags->precison;
+	{char 	*prefix;
+		prec = flags->precision;
 		return (prec);
 	}
 	return (0);
 }
-
 
 char	*get_prefix(t_flags *flags)
 {
@@ -146,4 +151,5 @@ char	*get_prefix(t_flags *flags)
 		return ("0X");
 	else if (flags->hash && flags->type == 'x')
 		return ("0x");
+	return("");
 }
