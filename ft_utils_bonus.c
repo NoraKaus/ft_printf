@@ -6,11 +6,11 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 14:25:31 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/20 14:33:47 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 11:28:54 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 int	ft_isalpha(int c)
 {

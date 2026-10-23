@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 19:08:53 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/22 16:49:24 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 14:01:53 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int main(void)
 	// int	std_ret;
 	// char *null_str = NULL;
 	int	num = 42;
-	int	d = 5;
-	int	n = -42;
-	unsigned int u = 123;
+	// int	d = 5;
+	int	n = 0;
+	unsigned int u = 3;
 	char str[] = "super";
 	
 
@@ -59,13 +59,13 @@ int main(void)
 
     printf("Flags\n");
 	printf("1:%#x\n%#X\n", u, u);
-	printf("2:%.0x\n", u);
-	printf("3:%#-.10x\n", u);
+	printf("2:%.0d\n", n);
+	printf("3:%#-5.3x\n", u);
 	printf("4:%#.10x\n", u);
-	printf("5:%#0.0x\n", u);
-	printf("6:%-010d\n", num);
-	printf("7:%10x\n", u);
-	printf("8:%010x\n", u);
-	printf("9:%010.5x\n", u);
+	printf("5:%#0.1x\n", u);
+	printf("6:%-3p\n", &num);
+	printf("7:%p\n", &num);
+	printf("8:%9p\n", &num);
+	printf("9:%-.3s\n", str);
 	return (0);
 }

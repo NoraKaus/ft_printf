@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 19:08:39 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/20 13:49:20 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 13:28:36 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		ft_printf(const char *input, ...);
 ssize_t	display(const char *input, va_list *list);
 ssize_t handle_output(const char *input, ssize_t *i, va_list *list);
 ssize_t	ft_putchar(int c);
-ssize_t	ft_putstr(char *str);
+ssize_t	ft_putstr(char *str, ssize_t len);
 ssize_t	ft_strlen(const char *s);
 void 	put_pad(ssize_t len, char s);
 int		ft_isalpha(int c);

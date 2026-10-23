@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:57:58 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/22 16:28:26 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 14:03:20 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ ssize_t	display(const char *input, va_list *list)
 	return (total);
 }
 
-ssize_t handle_output(const char *input, ssize_t *i, va_list *list)
+ssize_t	handle_output(const char *input, ssize_t *i, va_list *list)
 {
-	t_flags flags;
-	ssize_t count;
-	
+	t_flags	flags;
+	ssize_t	count;
+
 	count = 0;
 	init_struct(&flags);
 	t_parsef(input, i, &flags);
@@ -64,21 +64,6 @@ ssize_t handle_output(const char *input, ssize_t *i, va_list *list)
 	if (count < 0)
 		return (-1);
 	return (count);
-}
-
-ssize_t	put_loop(ssize_t len, char s)
-{
-	ssize_t	err;
-
-	err = -1;
-	while (0 < len)
-	{
-		err = write(1, &s, 1);
-		if (err < 0)
-			return (-1);
-		len--;
-	}
-	return (1);
 }
 
 

@@ -35,6 +35,53 @@ ssize_t	ft_ntopr(unsigned long nb, char *base, char	*num)
 	return (len);
 }
 
+ssize_t	output_num(char *num, ssize_t len, t_flags *flags)
+{
+	ssize_t	pos;
+	ssize_t	zero_pr;
+	ssize_t	space_pr;
+	char	*prefix;
+
+	prefix = get_prefix(flags);
+	pos = BUFF_SZ - len;
+	zero_pr = get_precision(flags) - len;
+	if (zero_pr < 0)
+		zero_pr = 0;
+	space_pr = get_width(flags) - (len + zero_pr + ft_strlen(prefix));
+	if (flags->minus)
+	{
+		len += if_minus(prefix, zero_pr, flags, &num[pos]);
+	}
+
+}
+
+ssize_t	if_minus(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
+{
+	ssize_t	chck;
+	ssize_t	total;
+
+	if (flags->negative)
+	{
+		chck = write(1, '-', 1);
+		if (chck < 0)
+			return (-1);
+		total += chck;
+	}
+	chck = ft_putstr(prefix, ft_strlen(prefix));
+	if (chck < 0)
+		return (-1);
+	total += chck;
+	chck = put_loop(zero_pr, '0');
+	if (chck < 0)
+		return (-1);
+	total += chck;
+	chck = ft_pustr(num, ft_strlen(num));
+	if (chck < 0)
+		return (-1);
+	total += chck;
+}
+
+
 // int	main(void)
 // {
 // 	ft_ntopr(-623, BASE_TEN);

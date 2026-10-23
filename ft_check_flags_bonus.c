@@ -6,13 +6,13 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 13:08:20 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/22 16:51:21 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 13:44:38 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-void t_parsef(const char *input, ssize_t *i, t_flags *flags)
+void	t_parsef(const char *input, ssize_t *i, t_flags *flags)
 {
 	while (is_flag(input[*i]) && input[*i])
 	{
