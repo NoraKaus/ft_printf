@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_flags_bonus.c                             :+:      :+:    :+:   */
+/*   ft_check_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 13:08:20 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/23 13:44:38 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 18:18:26 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 void	t_parsef(const char *input, ssize_t *i, t_flags *flags)
 {

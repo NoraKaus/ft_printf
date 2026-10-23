@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_process_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_process.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:08:04 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/23 13:05:28 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 18:18:00 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 
 ssize_t	sanitize_flags(t_flags *flags)

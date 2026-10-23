@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_check_next_bonus.c                              :+:      :+:    :+:   */
+/*   ft_check_next.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 12:35:56 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/23 14:56:21 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 18:18:22 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 ssize_t	ft_chck_nxt(va_list *list, t_flags *flags)
 {
@@ -57,7 +57,7 @@ static ssize_t	handle_digits(va_list *list, t_flags *flags)
 	ssize_t			len;
 	ssize_t			pos;
 	char			num[BUFF_SZ];
-	ssize_t			chk;
+	ssize_t			chck;
 
 	nbr = (long)va_arg(*list, int);
 	if (nbr < 0)
@@ -69,8 +69,10 @@ static ssize_t	handle_digits(va_list *list, t_flags *flags)
 	if (len < 0)
 		return (-1);
 	pos = BUFF_SZ - len;
-	output_num(&num[pos], len, flags);
-
+	chck = output_num(&num[pos], len, flags);
+	if (chck < 0)
+		return (-1);
+	return (chck + len);
 }
 
 static ssize_t	handle_ul(va_list *list, t_flags *flags, ssize_t total)
@@ -116,4 +118,3 @@ static ssize_t	handle_text(va_list *list, t_flags *flags)
 		total = ft_putchar(va_arg(*list, int));
 	return (total);
 }
-

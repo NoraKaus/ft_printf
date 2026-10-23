@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils_puts_bonus.c                              :+:      :+:    :+:   */
+/*   ft_utils_puts.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:07:29 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/23 14:33:08 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/23 18:17:56 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 ssize_t	ft_putchar(int c)
 {

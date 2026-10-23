@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 
 ssize_t	ft_ntopr(unsigned long nb, char *base, char	*num)
 {
@@ -50,12 +50,14 @@ ssize_t	output_num(char *num, ssize_t len, t_flags *flags)
 	space_pr = get_width(flags) - (len + zero_pr + ft_strlen(prefix));
 	if (flags->minus)
 	{
-		len += if_minus(prefix, zero_pr, flags, &num[pos]);
+		len += left_aligned(prefix, zero_pr, flags, &num[pos]);
 	}
+	else
+		len += right_aligned(prefix, zero_pr, flags, &num[pos]);
 
 }
 
-ssize_t	if_minus(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
+ssize_t	left_aligned(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
 {
 	ssize_t	chck;
 	ssize_t	total;
@@ -78,8 +80,35 @@ ssize_t	if_minus(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
 	chck = ft_pustr(num, ft_strlen(num));
 	if (chck < 0)
 		return (-1);
-	total += chck;
+	return (total + chck);
 }
+
+ssize_t	right_aligned(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
+{
+	ssize_t	chck;
+	ssize_t	total;
+
+	if (flags->negative)
+	{
+		chck = write(1, '-', 1);
+		if (chck < 0)
+			return (-1);
+		total += chck;
+	}
+	chck = ft_putstr(prefix, ft_strlen(prefix));
+	if (chck < 0)
+		return (-1);
+	total += chck;
+	chck = put_loop(zero_pr, '0');
+	if (chck < 0)
+		return (-1);
+	total += chck;
+	chck = ft_pustr(num, ft_strlen(num));
+	if (chck < 0)
+		return (-1);
+	return (total + chck);
+}
+
 
 
 // int	main(void)
