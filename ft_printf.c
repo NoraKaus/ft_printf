@@ -34,7 +34,7 @@ ssize_t	display(const char *input, va_list *list)
 	i = 0;
 	output = 0;
 	total = 0;
-	while (input[i++])
+	while (input[i])
 	{
 		if (input[i] != '%')
 			output = write(1, &input[i], 1);
@@ -42,12 +42,12 @@ ssize_t	display(const char *input, va_list *list)
 		{
 			if (input[i + 1] == '\0')
 				return (total);
-			output = handle_output(input, i + 1, list);
-			i++;
+			output = handle_output(input, &i, list);
 		}
 		if (output < 0)
 			return (-1);
 		total += output;
+		i++;
 	}
 	return (total);
 }
@@ -58,12 +58,11 @@ ssize_t	handle_output(const char *input, ssize_t *i, va_list *list)
 	ssize_t	count;
 
 	count = 0;
+	*i += 1;
 	init_struct(&flags);
-	t_parsef(input, i, &flags);
+	parsef(input, i, &flags);
 	count = ft_chck_nxt(list, &flags);
 	if (count < 0)
 		return (-1);
 	return (count);
 }
-
-

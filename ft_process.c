@@ -12,10 +12,9 @@
 
 #include "ft_printf.h"
 
-
-ssize_t	sanitize_flags(t_flags *flags)
+void	sanitize_flags(t_flags *flags)
 {
-	if (flags->minus || flags->type == 's' || flags->type == 'c')
+	if (flags->minus)
 		flags->zero = 0;
 	if (flags->plus)
 		flags->space = 0;
@@ -28,11 +27,8 @@ ssize_t	sanitize_flags(t_flags *flags)
 		flags->space = 0;
 	}
 	if (flags->type == 'p')
-	{
 		flags->zero = 0;
-		flags->precision = -1;
-	}
-	if (flags->type != 'x' || flags->type != 'X')
+	if (flags->type != 'x' && flags->type != 'X')
 		flags->hash = 0;
 }
 
@@ -52,7 +48,7 @@ ssize_t	get_precision(t_flags *flags)
 {
 	ssize_t	prec;
 
-	if (flags->precision)
+	if (flags->precision != -1)
 	{
 		prec = flags->precision;
 		return (prec);
@@ -70,7 +66,7 @@ char	*get_prefix(t_flags *flags)
 		return (" ");
 	if (flags->hash && flags->type == 'X')
 		return ("0X");
-	else if (flags->hash && flags->type == 'x')
+	else if ((flags->hash && flags->type == 'x') || flags->type == 'p')
 		return ("0x");
 	return ("");
 }

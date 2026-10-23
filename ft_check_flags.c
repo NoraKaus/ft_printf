@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	t_parsef(const char *input, ssize_t *i, t_flags *flags)
+void	parsef(const char *input, ssize_t *i, t_flags *flags)
 {
 	while (is_flag(input[*i]) && input[*i])
 	{
@@ -29,19 +29,19 @@ void	t_parsef(const char *input, ssize_t *i, t_flags *flags)
 		(*i)++;
 	}
 	if (ft_isdigit(input[*i]))
-		flags->width = ft_parse_n(input, i);
+		flags->width = parse_n(input, i);
 	if (input[*i] == '.')
 	{
 		flags->precision = 0;
 		(*i)++;
 	}
 	if (ft_isdigit(input[*i]))
-		flags->precision = ft_parse_n(input, i);
+		flags->precision = parse_n(input, i);
 	if (is_type(input[*i]))
 		flags->type = input[*i];
 }
 
-ssize_t	ft_parse_n(const char *input, ssize_t *i)
+ssize_t	parse_n(const char *input, ssize_t *i)
 {
 	ssize_t	pad;
 
@@ -53,34 +53,3 @@ ssize_t	ft_parse_n(const char *input, ssize_t *i)
 	}
 	return (pad);
 }
-
-// void print_flags(t_flags *flags)
-// {
-// 	printf("\ntype %c ", flags->type);
-// 	printf("\nminus %d", flags->minus);
-// 	printf("\nplus %d ", flags->plus);
-// 	printf("\nzero %d ", flags->zero);
-// 	printf("\nspace %d ", flags->space);
-// 	printf("\nhash %d ", flags->hash);
-// 	printf("\nwidth %d ", flags->width);
-// 	printf("\nprecision %d ", flags->precision);
-// 	printf("\n\nNext");
-// }
-
-// int main (void)
-// {
-// 	char *arr[] = {"%%", "%+ ", "%05p", "%.u", "%.0x", "%.05q",\
-// 		"%08.5r"};
-// 	t_flags flags;
-// 	ssize_t i;
-
-// 	for (int j = 0; j < sizeof(arr)/sizeof(arr[i]); j++)
-// 	{
-// 		i = 1;
-// 		init_struct(&flags);
-// 		t_parsef(arr[j],  &i, &flags);
-// 		print_flags(&flags);
-// 	}
-
-// }
-

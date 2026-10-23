@@ -19,6 +19,8 @@ ssize_t	ft_ntopr(unsigned long nb, char *base, char	*num)
 	unsigned long		pos;
 
 	pos = BUFF_SZ;
+	num[pos] = '\0';
+	pos--;
 	base_len = ft_strlen(base);
 	if (nb == 0)
 	{
@@ -37,38 +39,33 @@ ssize_t	ft_ntopr(unsigned long nb, char *base, char	*num)
 
 ssize_t	output_num(char *num, ssize_t len, t_flags *flags)
 {
-	ssize_t	pos;
 	ssize_t	zero_pr;
 	ssize_t	space_pr;
+	ssize_t	chck;
 	char	*prefix;
 
 	prefix = get_prefix(flags);
-	pos = BUFF_SZ - len;
 	zero_pr = get_precision(flags) - len;
 	if (zero_pr < 0)
 		zero_pr = 0;
-	space_pr = get_width(flags) - (len + zero_pr + ft_strlen(prefix));
-	if (flags->minus)
-	{
-		len += left_aligned(prefix, zero_pr, flags, &num[pos]);
-	}
-	else
-		len += right_aligned(prefix, zero_pr, flags, &num[pos]);
-
+	space_pr = get_width(flags) - (len + zero_pr + ft_strlen(prefix) - 1);
+	if (flags->minus && !flags->zero)
+		chck = left_al(prefix, zero_pr, space_pr, num);
+	else if (flags->minus && flags->zero && flags->precision >= 0)
+		chck = left_al(prefix, zero_pr, space_pr, num);
+	else if
+		chck = right_al(prefix, zero_pr, space_pr, num);
+	if (chck < 0)
+		return (-1);
+	return (chck);
 }
 
-ssize_t	left_aligned(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
+ssize_t	left_al(char *prefix, ssize_t zero_pr, ssize_t space_pr, char *num)
 {
 	ssize_t	chck;
 	ssize_t	total;
 
-	if (flags->negative)
-	{
-		chck = write(1, '-', 1);
-		if (chck < 0)
-			return (-1);
-		total += chck;
-	}
+	total = 0;
 	chck = ft_putstr(prefix, ft_strlen(prefix));
 	if (chck < 0)
 		return (-1);
@@ -77,24 +74,22 @@ ssize_t	left_aligned(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
 	if (chck < 0)
 		return (-1);
 	total += chck;
-	chck = ft_pustr(num, ft_strlen(num));
+	chck = ft_putstr(num, ft_strlen(num));
+	if (chck < 0)
+		return (-1);
+	total += chck;	
+	chck = put_loop(space_pr, ' ');
 	if (chck < 0)
 		return (-1);
 	return (total + chck);
 }
 
-ssize_t	right_aligned(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
+ssize_t	right_al(char *prefix, ssize_t zero_pr, ssize_t space_pr, char *num)
 {
 	ssize_t	chck;
 	ssize_t	total;
 
-	if (flags->negative)
-	{
-		chck = write(1, '-', 1);
-		if (chck < 0)
-			return (-1);
-		total += chck;
-	}
+	total = 0;
 	chck = ft_putstr(prefix, ft_strlen(prefix));
 	if (chck < 0)
 		return (-1);
@@ -103,13 +98,14 @@ ssize_t	right_aligned(char *prefix, ssize_t zero_pr, t_flags *flags, char *num)
 	if (chck < 0)
 		return (-1);
 	total += chck;
-	chck = ft_pustr(num, ft_strlen(num));
+	chck = ft_putstr(num, ft_strlen(num));
+	if (chck < 0)
+		return (-1);
+	chck = put_loop(space_pr, ' ');
 	if (chck < 0)
 		return (-1);
 	return (total + chck);
 }
-
-
 
 // int	main(void)
 // {

@@ -62,7 +62,7 @@ ssize_t	is_flag(char inp)
 
 ssize_t	is_type(char inp)
 {
-	char	type[9];
+	char	type[10];
 	ssize_t	j;
 
 	j = 0;
@@ -84,4 +84,3 @@ ssize_t	is_type(char inp)
 	}
 	return (0);
 }
-
