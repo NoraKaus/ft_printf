@@ -10,13 +10,21 @@ It handles the following conventions: cspdiuxX%.
 #### Bonus
 Manage the combination of flags -0.# +
 
-`-` 	left alighns text
+`-` 	Left align the result within the given field width.
+
 `0` 	zeros defined width if not left aligned
+
 `1-9` 	number before . defines width, and after defines precision
-`+` 	displays + for positive values
-` `		displays space before num for positive values
+
+`+` 	prefix + / - to output value fi the value is signed
+
+` `		Use a blank to prefix the output value if it's signed and positive. The blank is ignored if both the blank and + flags appear.
+
 `#`		displays 0x of 0X for hexadecimal values
+
 `.`		defines precision
+
+If 0 appears with . the width becomes spaces instead of zeroes
 
 ### Instructions
 ```bash
@@ -31,6 +39,9 @@ cc -Wall -Wextra -Werror <main.c> libftprintf.a
 
 - The `man` pages for the reimplemented functions (`man 3 printf`, etc.)
 - ibm printf documentation of the flags
+- deepwiki for visualisation
+- XQA
+- learn Microsoft
 - Francinette (by xicodomingues) and AddressSanitizer / Valgrind for testing and debugging
 
 **AI usage:** AI was used for to build the test functions, for edge case debugging and understand/outline different flag combinationtions. 
