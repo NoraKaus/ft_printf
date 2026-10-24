@@ -53,7 +53,7 @@ ssize_t	get_precision(t_flags *flags)
 		prec = flags->precision;
 		return (prec);
 	}
-	return (0);
+	return (-1);
 }
 
 char	*get_prefix(t_flags *flags)

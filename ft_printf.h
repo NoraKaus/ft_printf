@@ -60,5 +60,11 @@ ssize_t	left_al(char *prefix, ssize_t zero_pr, ssize_t space_pr,\
 	char *num);
 ssize_t	right_al(char *prefix, ssize_t zero_pr, ssize_t space_pr,\
 	char *num);
+ssize_t	handle_string(va_list *list, t_flags *flags);
+ssize_t	handle_text(va_list *list, t_flags *flags);
+ssize_t add_str(char *str, ssize_t len, ssize_t *total);
+ssize_t	get_str_len(t_flags *flags, char *str);
+ssize_t	zero_right(char *prefix, ssize_t zero_pr, ssize_t space_pr, char *num);
+ssize_t add_pad(ssize_t len, char c, ssize_t *total);
 
 #endif
