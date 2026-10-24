@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/18 19:08:39 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/24 14:59:59 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/24 15:56:20 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ ssize_t	add_str(char *str, ssize_t len, ssize_t *total);
 ssize_t	get_str_len(t_flags *flags, char *str);
 ssize_t	zero_right(char *prefix, ssize_t zero_pr, ssize_t space_pr, char *num);
 ssize_t	add_pad(ssize_t len, char c, ssize_t *total);
+ssize_t	null_ptr(t_flags *flags);
 
 #endif

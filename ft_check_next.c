@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 12:35:56 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/24 14:40:18 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/24 17:07:38 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,10 @@ static ssize_t	handle_pointers(va_list *list, t_flags *flags)
 	ptr = (unsigned long)va_arg(*list, unsigned long);
 	if (!ptr)
 	{
-		if (flags->width)
-			if (add_pad(((flags->width) - 5), ' ', &len1) < 0)
-				return (-1);
-		len2 = write(1, "(nil)", 5);
-		if (len2 < 0)
+		len1 = null_ptr(flags);
+		if (len1 < 0)
 			return (-1);
-		return (len1 + len2);
+		return (len1);
 	}
 	len1 = ft_ntopr(ptr, HX_LOW, num);
 	pos = BUFF_SZ - len1 - 1;
@@ -103,7 +100,34 @@ static ssize_t	handle_ul(va_list *list, t_flags *flags)
 		len = ft_ntopr(nbr, BASE_TEN, num);
 	if (nbr == 0 && (flags->type == 'x' || flags->type == 'X'))
 		flags->hash = 0;
+	if (nbr == 0 && flags->precision == 0)
+		len = 0;
 	pos = BUFF_SZ - len - 1;
 	chck = output_num(&num[pos], len, flags);
 	return (chck);
+}
+
+ssize_t	null_ptr(t_flags *flags)
+{
+	ssize_t	len1;
+	ssize_t	len2;
+	ssize_t	width;
+
+	len1 = 0;
+	len2 = 0;
+	width = get_width(flags);
+	if (flags->width && !flags->minus)
+	{
+		if (add_pad((width - 5), ' ', &len1) < 0)
+			return (-1);
+	}
+	len2 = write(1, "(nil)", 5);
+	if (len2 < 0)
+		return (-1);
+	if (flags->minus && flags->width)
+	{
+		if (add_pad((width - 5), ' ', &len1) < 0)
+			return (-1);
+	}
+	return (len1 + len2);
 }
