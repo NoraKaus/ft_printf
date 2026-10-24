@@ -6,7 +6,7 @@
 /*   By: ekausiny <ekausiny@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 12:35:56 by ekausiny          #+#    #+#             */
-/*   Updated: 2026/10/23 18:18:22 by ekausiny         ###   ########.fr       */
+/*   Updated: 2026/10/24 14:40:18 by ekausiny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ ssize_t	ft_chck_nxt(va_list *list, t_flags *flags)
 		no_err = handle_digits(list, flags);
 	else if (flags->type == 'u' || flags->type == 'x' || flags->type == 'X')
 		no_err = handle_ul(list, flags);
-	else if (flags->type == 'c'|| flags->type == '%')
+	else if (flags->type == 'c' || flags->type == '%')
 		no_err = handle_text(list, flags);
 	else if (flags->type == 's')
 		no_err = handle_string(list, flags);
@@ -107,4 +107,3 @@ static ssize_t	handle_ul(va_list *list, t_flags *flags)
 	chck = output_num(&num[pos], len, flags);
 	return (chck);
 }
-

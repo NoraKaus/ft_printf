@@ -81,7 +81,7 @@ ssize_t	left_al(char *prefix, ssize_t zero_pr, ssize_t space_pr, char *num)
 	chck = ft_putstr(num, ft_strlen(num));
 	if (chck < 0)
 		return (-1);
-	total += chck;	
+	total += chck;
 	chck = put_loop(space_pr, ' ');
 	if (chck < 0)
 		return (-1);
@@ -127,7 +127,6 @@ ssize_t	zero_right(char *prefix, ssize_t zero_pr, ssize_t space_pr, char *num)
 		return (-1);
 	return (total + chck);
 }
-
 
 // int	main(void)
 // {
