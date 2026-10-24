@@ -127,14 +127,3 @@ ssize_t	zero_right(char *prefix, ssize_t zero_pr, ssize_t space_pr, char *num)
 		return (-1);
 	return (total + chck);
 }
-
-// int	main(void)
-// {
-// 	ft_ntopr(-623, BASE_TEN);
-// 	write (1, "\n", 1);
-// 	ft_ntopr(156, BASE_TEN);
-// 	write (1, "\n", 1);
-// 	ft_ntopr(-0, HX_LOW);
-// 	write (1, "\n", 1);
-// 	ft_ntopr(0, HX_UP);
-// }
