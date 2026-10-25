@@ -16,6 +16,8 @@ CFLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
+bonus: all
+
 $(NAME) : $(OBJ)
 	ar rcs $(NAME) $(OBJ)
 

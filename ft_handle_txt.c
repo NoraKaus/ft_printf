@@ -21,6 +21,8 @@ ssize_t	handle_text(va_list *list, t_flags *flags)
 	total = 0;
 	chck = 0;
 	width = get_width(flags) - 1;
+	if (flags->type == '%')
+		return (ft_putchar('%'));
 	if (width > 0 && !flags->minus)
 	{
 		if (add_pad(width, ' ', &total) < 0)
@@ -28,8 +30,6 @@ ssize_t	handle_text(va_list *list, t_flags *flags)
 	}
 	if (flags->type == 'c')
 		chck = ft_putchar(va_arg(*list, int));
-	else if (flags->type == '%')
-		chck = ft_putchar('%');
 	if (chck < 0)
 		return (-1);
 	if (flags->minus)

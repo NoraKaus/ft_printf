@@ -14,7 +14,10 @@
 
 ssize_t	ft_putchar(int c)
 {
-	if (write(1, &c, 1) < 0)
+	unsigned char	ch;
+
+	ch = (unsigned char)c;
+	if (write(1, &ch, 1) < 0)
 		return (-1);
 	return (1);
 }

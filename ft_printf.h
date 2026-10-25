@@ -15,7 +15,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 # define BASE_TEN "0123456789"
 # define HX_LOW "0123456789abcdef"
@@ -24,15 +23,15 @@
 
 typedef struct s_flags
 {
-	char	type;
-	int		negative;
-	int		minus;
-	int		plus;
-	int		zero;
-	int		space;
-	int		hash;
-	int		width;
-	int		precision;
+	char		type;
+	int			negative;
+	int			minus;
+	int			plus;
+	int			zero;
+	int			space;
+	int			hash;
+	ssize_t		width;
+	ssize_t		precision;
 }	t_flags;
 
 int		ft_printf(const char *input, ...);
